@@ -1,0 +1,31 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<nav class="navbar navbar-inverse" style="font-variant: small-caps;">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/home/product}" th:text="#{nav.home}">Home</a></li>
+				<th:block th:if="${#request.remoteUser}">
+					<li><a th:href="@{/security/logoff}" th:text="#{nav.signOut}">Sign Out</a></li>
+					<li
+						th:if="${#request.isUserInRole('PM') or #request.isUserInRole('ADMIN')}">
+						<a th:href="@{/admin/home/index}" th:text="#{nav.administration}">Administration</a>
+					</li>
+				</th:block>
+				<th:block th:unless="${#request.remoteUser}">
+					<li><a th:href="@{/security/login/form}" th:text="#{nav.signIn}">Sign In</a></li>
+				</th:block>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.system}">System<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/account/dmk}" th:text="#{nav.changedPass}">Changed Password</a></li>
+						<li><a th:href="@{/account/dangky}" th:text="#{nav.registration}">Registration</a></li>
+					</ul></li>
+				<li><a href="?lang=vi">[[#{nav.vnam}]]</a></li>
+				<li><a href="?lang=en">[[#{nav.eng}]]</a></li>
+			</ul>
+			<ul th:if="${#request.remoteUser}"
+				class="nav navbar-nav navbar-right">
+				<li><a href="#">[[#{nav.welcome}]] [[${#request.remoteUser}]] </a></li>
+			</ul>
+		</div>
+	</nav>
+</div>

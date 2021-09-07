@@ -1,0 +1,31 @@
+<div xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+	<main>
+			<div class="panel panel-primary">
+				<div class="panel-heading">FORGET PASSWORD</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<div>Username</div>
+						<input ng-model="form.username" class="form-control">
+					</div>
+					<div class="form-group">
+						<div>Email:</div>
+						<input ng-model="form.email"  class="form-control">
+					</div>
+					<div class="form-group" ng-show="kiemtra">
+						<div>New Password:</div>
+						<input ng-model="form.newPass" class="form-control" >
+					</div>
+					<div class="form-group" ng-show="kiemtra">
+						<div>Confirm:</div>
+						<input ng-model="form.confirm"  class="form-control" >
+					</div>
+				</div>
+				<div class="panel-footer text-right">
+					<i class="pull-left text-danger" th:text="${message}"></i>
+					<button class="btn btn-success" ng-click="quenmk()"  ng-show="nut">Submit</button>
+					<button class="btn btn-success" ng-click="check()" ng-show="!nut">check</button>
+				</div>
+			</div>
+	</main>
+</div>
